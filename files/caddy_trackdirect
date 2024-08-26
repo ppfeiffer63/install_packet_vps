@@ -1,0 +1,6 @@
+cbaprs.packetradio-freital.de {
+    reverse_proxy localhost:8000 
+}
+ws.cbaprs.packetradio-freital.de {
+    reverse_proxy localhost:9000
+}

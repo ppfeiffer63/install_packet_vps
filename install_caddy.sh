@@ -19,7 +19,7 @@ apt install caddy
 
 
 
-cat Caddyfile >> /etc/caddy/Caddyfile
-cp cockpit.conf /etc/cockpit/cockpit.conf
+cat files/caddy_cockpit >> /etc/caddy/Caddyfile
+cp files/cockpit.conf /etc/cockpit/cockpit.conf
 
 
