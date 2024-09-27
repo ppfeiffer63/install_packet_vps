@@ -1,0 +1,36 @@
+#! /bin/bash -e
+trap cleanup EXIT
+
+function cleanup(){
+        AX25_RUN=false
+        pkill beacon
+        pkill mheardd
+        pkill kissattach
+        pkill ax25ipd
+        pkill kissnetd
+        echo "AX25 stopped: EXIT"
+}
+
+att_port(){
+        read PTS1 PTS2
+        echo "Starting ipd on $PTS1 and $PTS2"
+        kissattach -l $PTS1 ax0
+        sleep 1
+        ax25ipd -d $PTS2 -c $SCRIPTPATH/ax25ipd-10092.conf > /tmp/axip
+}
+
+cleanup
+
+tmpfile="/tmp/$$.startipd.pts"
+SCRIPTPATH=$(cd `dirname $0` && pwd)
+kissnetd -p 2 > "$tmpfile" &
+sleep 2
+tail -n 1 $tmpfile | att_port
+rm $tmpfile
+
+cat /tmp/axip
+
+
+
+
+exit 0

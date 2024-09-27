@@ -19,3 +19,4 @@ apt-get update
 apt-get install caddy -y
 
 cat Caddyfile >> /etc/caddy/Caddyfile
+cp 
